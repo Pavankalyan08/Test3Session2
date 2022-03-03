@@ -24,7 +24,7 @@ int input_n()
 fraction input_fraction()
 {
   fraction f;
-  printf("input a fraction\n");
+  printf("input the fraction\n");
   scanf("%d%d",&f.num,&f.den);
   return f;
   }
