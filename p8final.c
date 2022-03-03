@@ -17,6 +17,7 @@ typedef struct _fraction fraction;
   }  
 int input_n()
 {
+  int n;
   printf("enter n\n");
   scanf("%d",&n);
   return n;
@@ -28,13 +29,7 @@ fraction input_fraction()
   scanf("%d%d",&f.num,&f.den);
   return f;
   }
-void input_n_fractions(int n,Fraction f[n])
-{
-  for (int i=0;i<n;i++)
-    {
-      f[i]=input_fractions;
-    }
-}
+
 fraction add_fractions(fraction f1,fraction f2)
 {
   fraction sum;
@@ -45,28 +40,35 @@ fraction add_fractions(fraction f1,fraction f2)
   sum.den=sum.den/g;
   return sum;
 }
-fraction add_n_fractions(int n,Fraction f[n])
+fraction add_n_fractions(int n,fraction f[n])
 {
-  Fraction sum;
+  fraction sum;
   sum=f[0];
   for (int i=0;i<n;i++)
-    {
-      sum=add_n_fractions(sum);
+    { 
+      sum=add_fractions(f[i],sum);
     }
+  return sum;
+  
 }
-void output(fraction f1,fraction f2,fraction sum)
+void output(int n,fraction f[n],fraction sum)
 {
-  printf("the sum of the fractions %d/%d and %d/%d is  %d/%d"
-,f1.num,f1.den,f2.num,f2.den,sum.num,sum.den);
+  int i;
+  for(i=0;i<n-1;i++)
+    {
+      printf("%d/%d",f[i].num,f[i].den);
+    }
+  printf("%d%d",f[i].num,f[i].den);
+  printf(" is %d/%d\n",sum.num,sum.den);
 }
 int main()
 {
   int n;
   n=input_n();
-  Fraction f[n],sum;
-  input_n_fractions(n,f);
-  sum= add_n-fractions(n,f);
-  output_n_fractions(n,f,sum);
+  fraction f[n],sum;
+  n=input_n();
+  sum= add_n_fractions(n,f);
+  output(n,f,sum);
   return 0;
 }
 
